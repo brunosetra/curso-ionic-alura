@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Carro } from '../../pages/home/home';
+import { Carro } from '../../models/carro.model';
 
 /*
   Generated class for the CarrosServiceProvider provider.

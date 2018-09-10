@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
 import { NavLifecyle } from '../../utils/ionic/nav/nav-lifecycle';
 import { EscolhaPage } from '../escolha/escolha';
+import { Carro } from '../../models/carro.model';
 
 @Component({
   selector: 'page-home',
@@ -49,8 +50,3 @@ export class HomePage implements NavLifecyle {
 
 }
 
-export interface Carro {
-  nome : string;
-  preco : number;
-  fotos : string[];
-}
