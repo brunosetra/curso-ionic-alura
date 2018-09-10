@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
 import { EscolhaPageModule } from '../pages/escolha/escolha.module';
+import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EscolhaPageModule } from '../pages/escolha/escolha.module';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    EscolhaPageModule
+    EscolhaPageModule,
+    CadastroPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -21,6 +21,10 @@ webpackEmptyAsyncContext.id = 109;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../pages/cadastro/cadastro.module": [
+		271,
+		2
+	],
 	"../pages/escolha/escolha.module": [
 		151
 	]
@@ -122,7 +126,7 @@ var EscolhaPage = (function () {
     }
     Object.defineProperty(EscolhaPage.prototype, "precoTotal", {
         get: function () {
-            return this._precoTotal;
+            return this.precoTotal;
         },
         enumerable: true,
         configurable: true
@@ -138,12 +142,11 @@ var EscolhaPage = (function () {
 }());
 EscolhaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-escolha',template:/*ion-inline-start:"/media/aluno/Data/curso-ionic-alura/src/pages/escolha/escolha.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Escolha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-slides pager="true">\n    <ion-slide *ngFor="let foto of carro.fotos">\n      <img src="{{foto}}">\n    </ion-slide>\n  </ion-slides>\n\n  <ion-item-group>\n    <ion-item-divider color="light">\n      VEÍCULO\n    </ion-item-divider>\n    <ion-item>{{carro.nome}}</ion-item>\n    <ion-item>{{carro.preco | currency}}</ion-item>\n  </ion-item-group>\n\n  <ion-item-group>\n    <ion-item-divider color="light">\n      <ion-icon name="options"></ion-icon>\n      ACESSÓRIOS\n    </ion-item-divider>\n    <ion-item *ngFor="let acessorio of acessorios">\n      <ion-label>\n        <h2>{{acessorio.nome}} </h2>\n        <h4>{{acessorio.preco}}</h4>\n      </ion-label>\n\n      <ion-toggle (ionChange)="atualizarPrecoTotal(toggle.checked,acessorio)" #toggle color="secondary"></ion-toggle>\n    </ion-item>\n\n  </ion-item-group>\n\n  <ion-item-divider color="light">\n    <span item-right>TOTAL: {{precoTotal | currency}}</span>\n  </ion-item-divider>\n\n  <ion-fab top right edge>\n    <button ion-fab>\n      <ion-icon name="arrow-dropright"></ion-icon>\n    </button>\n  </ion-fab>\n\n</ion-content>'/*ion-inline-end:"/media/aluno/Data/curso-ionic-alura/src/pages/escolha/escolha.html"*/,
+        selector: 'page-escolha',template:/*ion-inline-start:"/media/aluno/Data/curso-ionic-alura/src/pages/escolha/escolha.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Escolha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-slides pager="true">\n    <ion-slide *ngFor="let foto of carro.fotos">\n      <img src="{{foto}}">\n    </ion-slide>\n  </ion-slides>\n\n  <ion-item-group>\n    <ion-item-divider color="light">\n      VEÍCULO\n    </ion-item-divider>\n    <ion-item>{{carro.nome}}</ion-item>\n    <ion-item>{{carro.preco | currency}}</ion-item>\n  </ion-item-group>\n\n  <ion-item-group>\n    <ion-item-divider color="light">\n      <ion-icon name="options"></ion-icon>\n      ACESSÓRIOS\n    </ion-item-divider>\n    <ion-item *ngFor="let acessorio of acessorios">\n      <ion-label>\n        <h2>{{acessorio.nome}} </h2>\n        <h4>{{acessorio.preco}}</h4>\n      </ion-label>\n\n      <ion-toggle (ionChange)="atualizarPrecoTotal(toggle.checked,acessorio)" #toggle color="secondary"></ion-toggle>\n    </ion-item>\n\n  </ion-item-group>\n\n  <ion-item-divider color="light">\n    <span item-right>TOTAL: {{precoTotal | currency}}</span>\n  </ion-item-divider>\n\n  <ion-fab top right edge>\n    <button ion-fab (click)="avancaCadastro()">\n      <ion-icon name="arrow-dropright"></ion-icon>\n    </button>\n  </ion-fab>\n\n</ion-content>'/*ion-inline-end:"/media/aluno/Data/curso-ionic-alura/src/pages/escolha/escolha.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
 ], EscolhaPage);
 
-var _a, _b;
 //# sourceMappingURL=escolha.js.map
 
 /***/ }),
@@ -250,10 +253,9 @@ var CarrosServiceProvider = (function () {
 }());
 CarrosServiceProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
 ], CarrosServiceProvider);
 
-var _a;
 //# sourceMappingURL=carros-service.js.map
 
 /***/ }),

@@ -1,3 +1,4 @@
+import { CadastroPage } from './../cadastro/cadastro';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Carro } from '../../models/carro.model';
@@ -35,7 +36,6 @@ export class EscolhaPage {
     this.carro = navParams.get('carroSelecionado');
 
     this.carro.fotos = this.carro.fotos.map((foto)=>foto.replace('localhost','192.168.56.101'));
-    console.log(this.carro);
 
     this._precoTotal = this.carro.preco;
   }
@@ -49,4 +49,8 @@ export class EscolhaPage {
       this._precoTotal -= acessorio.preco;
   }
 
+
+  avancaCadastro() {
+    this.navCtrl.push(CadastroPage,{carroSelecionado : this.carro, precoTotal : this.precoTotal });
+  }
 }
