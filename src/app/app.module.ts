@@ -4,12 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http'
+import { IonicStorageModule } from "@ionic/storage";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
 import { EscolhaPageModule } from '../pages/escolha/escolha.module';
 import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
+import { AgendamentoService } from '../providers/agendamento-service/agendamento-service';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,12 @@ import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name : 'aluracar',
+      storeName : 'agendamentos',
+      driverOrder : ['indexeddb']
+
+    }),
     HttpClientModule,
     EscolhaPageModule,
     CadastroPageModule
@@ -32,7 +40,8 @@ import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CarrosServiceProvider
+    CarrosServiceProvider,
+    AgendamentoService
   ]
 })
 export class AppModule {}

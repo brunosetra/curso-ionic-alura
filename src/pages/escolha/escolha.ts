@@ -51,6 +51,6 @@ export class EscolhaPage {
 
 
   avancaCadastro() {
-    this.navCtrl.push(CadastroPage,{carroSelecionado : this.carro, precoTotal : this.precoTotal });
+    this.navCtrl.push(CadastroPage,{carroSelecionado : this.carro, precoTotal : this._precoTotal });
   }
 }
