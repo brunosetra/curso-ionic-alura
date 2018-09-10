@@ -19,6 +19,8 @@ export class EscolhaPage {
   carro: Carro;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.carro = navParams.get('carroSelecionado');
+
+    this.carro.fotos = this.carro.fotos.map((foto)=>foto.replace('localhost','192.168.56.101'));
     console.log(this.carro);
   }
 

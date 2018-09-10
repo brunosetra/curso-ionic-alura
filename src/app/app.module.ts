@@ -8,24 +8,23 @@ import { HttpClientModule } from '@angular/common/http'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
-import { EscolhaPage } from '../pages/escolha/escolha';
+import { EscolhaPageModule } from '../pages/escolha/escolha.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    EscolhaPage
+    HomePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    EscolhaPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    EscolhaPage
+    HomePage
   ],
   providers: [
     StatusBar,
