@@ -25682,3 +25682,7 @@ ion-navbar.toolbar {
 page-escolha ion-slides {
   height: auto;
 }
+
+page-lista-agendamentos .falha {
+  color: red;
+}
