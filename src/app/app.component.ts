@@ -1,15 +1,23 @@
-import { ListaAgendamentosPage } from './../pages/lista-agendamentos/lista-agendamentos';
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { ListaAgendamentosPage } from '../pages/lista-agendamentos/lista-agendamentos';
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  selector : 'myapp'
 })
 export class MyApp {
-  rootPage:any = ListaAgendamentosPage;
+
+  rootPage:any = HomePage;
+
+  @ViewChild(Nav) public nav : Nav;
+
+  public paginas = [
+    {titulo : 'Agendamentos', component : ListaAgendamentosPage, icone : 'calendar' }
+  ]
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -19,5 +27,9 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+  irParaPagina(pagina) {
+    this.nav.push(pagina);
+  }  
 }
 

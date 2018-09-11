@@ -22,7 +22,7 @@ export class AgendamentoDaoProvider {
 
     let promise = this._storage
       .forEach((agendamento: Agendamento)=>{agendamentos.push(agendamento)}) 
-      .then(()=> {console.log(agendamentos); return agendamentos});
+      .then(()=> agendamentos);
 
     return Observable.fromPromise(promise);
   }
