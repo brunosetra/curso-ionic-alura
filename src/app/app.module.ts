@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login';
 import { ListaAgendamentosPageModule } from './../pages/lista-agendamentos/lista-agendamentos.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -14,11 +15,13 @@ import { EscolhaPageModule } from '../pages/escolha/escolha.module';
 import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
 import { AgendamentoService } from '../providers/agendamento-service/agendamento-service';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
+import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -45,7 +49,8 @@ import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CarrosServiceProvider,
     AgendamentoService,
-    AgendamentoDaoProvider
+    AgendamentoDaoProvider,
+    UsuarioServiceProvider
   ]
 })
 export class AppModule {}
