@@ -1,3 +1,4 @@
+import { PerfilPage } from './../pages/perfil/perfil';
 import { LoginPage } from './../pages/login/login';
 import { ListaAgendamentosPageModule } from './../pages/lista-agendamentos/lista-agendamentos.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +17,7 @@ import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
 import { AgendamentoService } from '../providers/agendamento-service/agendamento-service';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
 import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
 @NgModule({
   declarations: [
@@ -36,12 +38,14 @@ import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-ser
     EscolhaPageModule,
     CadastroPageModule,
     ListaAgendamentosPageModule,
+    PerfilPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    
   ],
   providers: [
     StatusBar,
