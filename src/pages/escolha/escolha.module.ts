@@ -9,7 +9,7 @@ import { EscolhaPage } from './escolha';
   imports: [
     IonicPageModule.forChild(EscolhaPage),
   ],
-  exports : [
+  exports: [
     EscolhaPage
   ]
 })

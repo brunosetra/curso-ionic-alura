@@ -9,7 +9,7 @@ import { PerfilPage } from './perfil';
   imports: [
     IonicPageModule.forChild(PerfilPage),
   ],
-  exports : [
+  exports: [
     PerfilPage
   ]
 })

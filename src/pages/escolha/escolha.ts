@@ -1,15 +1,8 @@
-import { CadastroPage } from './../cadastro/cadastro';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Carro } from '../../models/carro.model';
-import { Acessorio } from '../../models/acessorio.model';
-
-/**
- * Generated class for the EscolhaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Carro } from '../../modelos/carro';
+import { Acessorio } from '../../modelos/acessorio';
+import { CadastroPage } from '../cadastro/cadastro';
 
 @IonicPage()
 @Component({
@@ -19,38 +12,36 @@ import { Acessorio } from '../../models/acessorio.model';
 export class EscolhaPage {
 
   public carro: Carro;
+  public acessorios: Acessorio[];
+  private _precoTotal: number;
 
-  private _precoTotal : number ;
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams) {
 
-  get precoTotal() : number {
-    return this._precoTotal;
+      this.carro = this.navParams.get('carroSelecionado');
+      this._precoTotal = this.carro.preco;
+      this.acessorios = [
+        { nome: 'Freio ABS', preco: 800 },
+        { nome: 'Ar-condicionado', preco: 1000 },
+        { nome: 'MP3 Player', preco: 500 }
+      ];
   }
 
-  public acessorios : Acessorio[] = [
-    {nome : 'Freio ABS', preco : 800},
-    {nome : 'Ar condicionado', preco : 1000},
-    {nome : 'Central Multimidia', preco : 950},
-  ];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.carro = navParams.get('carroSelecionado');
-
-    this.carro.fotos = this.carro.fotos.map((foto)=>foto.replace('localhost','192.168.56.101'));
-
-    this._precoTotal = this.carro.preco;
-  }
-
-  ionViewDidLoad() {
-  }
-
-  atualizarPrecoTotal(checked : boolean, acessorio : Acessorio) {
-    checked ?
-      this._precoTotal += acessorio.preco:
+  atualizaTotal(ativado:boolean, acessorio: Acessorio) {
+    ativado ?
+      this._precoTotal += acessorio.preco :
       this._precoTotal -= acessorio.preco;
   }
 
-
   avancaCadastro() {
-    this.navCtrl.push(CadastroPage,{carroSelecionado : this.carro, precoTotal : this._precoTotal });
+    this.navCtrl.push(CadastroPage.name, {
+      carroSelecionado: this.carro,
+      precoTotal: this._precoTotal
+    });
   }
+
+  get precoTotal() {
+    return this._precoTotal;
+  }
+
 }

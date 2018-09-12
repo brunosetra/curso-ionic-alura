@@ -1,23 +1,30 @@
-import { PerfilPage } from './../pages/perfil/perfil';
-import { LoginPage } from './../pages/login/login';
-import { ListaAgendamentosPageModule } from './../pages/lista-agendamentos/lista-agendamentos.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpClientModule } from '@angular/common/http'
-import { IonicStorageModule } from "@ionic/storage";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { HttpClientModule } from '@angular/common/http';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
-import { EscolhaPageModule } from '../pages/escolha/escolha.module';
-import { CadastroPageModule } from '../pages/cadastro/cadastro.module';
-import { AgendamentoService } from '../providers/agendamento-service/agendamento-service';
+import { AgendamentosServiceProvider } from '../providers/agendamentos-service/agendamentos-service';
+
+import { IonicStorageModule } from '@ionic/storage';
+
+import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/observable/of';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
-import { UsuarioServiceProvider } from '../providers/usuario-service/usuario-service';
-import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { LoginPage } from '../pages/login/login';
+import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
+import { Vibration } from '@ionic-native/vibration';
+import { DatePicker } from '@ionic-native/date-picker';
+import { Camera } from '@ionic-native/camera';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -27,34 +34,32 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
-      name : 'aluracar',
-      storeName : 'agendamentos',
-      driverOrder : ['indexeddb']
-
-    }),
-    HttpClientModule,
-    EscolhaPageModule,
-    CadastroPageModule,
-    ListaAgendamentosPageModule,
-    PerfilPageModule
+      name: 'aluracar',
+      storeName: 'agendamentos',
+      driverOrder: ['indexeddb']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage,
-    
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CarrosServiceProvider,
-    AgendamentoService,
+    AgendamentosServiceProvider,
     AgendamentoDaoProvider,
-    UsuarioServiceProvider
+    UsuariosServiceProvider,
+    Vibration,
+    DatePicker,
+    Camera,
+    OneSignal
   ]
 })
 export class AppModule {}

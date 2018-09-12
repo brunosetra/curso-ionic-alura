@@ -1,9 +1,8 @@
-import { AgendamentoService } from './../../providers/agendamento-service/agendamento-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-
-import { AgendamentoDaoProvider } from './../../providers/agendamento-dao/agendamento-dao';
-import { Agendamento } from '../../models/agendamento.model';
+import { AgendamentoDaoProvider } from '../../providers/agendamento-dao/agendamento-dao';
+import { Agendamento } from '../../modelos/agendamento';
+import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 
 @IonicPage()
 @Component({
@@ -11,62 +10,70 @@ import { Agendamento } from '../../models/agendamento.model';
   templateUrl: 'lista-agendamentos.html',
 })
 export class ListaAgendamentosPage {
+  agendamentos: Agendamento[];
+  private _alerta;
 
-  agendamentos : Agendamento[];
-
-  constructor(
-      public navCtrl: NavController, 
-      public navParams: NavParams,
-      private _alertCtrl : AlertController,
-      private _agendamentoDao : AgendamentoDaoProvider,
-      private _agendamentoService : AgendamentoService
-      ) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private _alertCtrl: AlertController,
+    private _agendamentosService: AgendamentosServiceProvider,
+    private _agendamentoDao: AgendamentoDaoProvider) {
   }
 
   ionViewDidLoad() {
     this._agendamentoDao.listaTodos()
-      .subscribe((agendamentos : Agendamento[])=>{
-        this.agendamentos = agendamentos;
-      });
+        .subscribe(
+          (agendamentos: Agendamento[]) => {
+            this.agendamentos = agendamentos;
+          }
+        )
   }
 
-  reenvia(agendamento : Agendamento) {
+  ionViewDidEnter() {
+    setTimeout(() => this.atualizaAgendamentos(), 5000);
+  }
 
-    let alerta = this._alertCtrl.create({
-      title : 'Aviso', 
-      buttons : [
-        {
-          text : 'ok', 
-          handler : ()=> {
-            this.navCtrl.setRoot(ListaAgendamentosPage);
-          }
+  atualizaAgendamentos() {
+    this.agendamentos
+        .filter((agendamento: Agendamento) => agendamento.confirmado)
+        .forEach((agendamento: Agendamento) => {
+          agendamento.visualizado = true;
+
+          this._agendamentoDao.salva(agendamento);
+        });
+  }
+
+  reenvia(agendamento: Agendamento) {
+    this._alerta = this._alertCtrl.create({
+      title: 'Aviso',
+      buttons: [
+        { 
+          text: 'ok'
         }
       ]
-
     });
 
-    this._agendamentoService.agenda(agendamento)
-      .mergeMap((valor)=> {
+    let mensagem = '';
 
-        let obser$ = this._agendamentoDao.salva(agendamento)
+    this._agendamentosService.agenda(agendamento)
+        .mergeMap((valor) => {
 
-        if(valor instanceof Error) {
-          throw valor
-        }
-
-        return obser$
-      })
-      .subscribe(
-        ()=> {
-          alerta.setSubTitle('Agendamento reenviado!');
-          alerta.present();
-        },
-        (error: Error)=> {
-          alerta.setSubTitle(error.message);
-          alerta.present();
-        }
-      )
-
+          let observable = this._agendamentoDao.salva(agendamento);
+          if (valor instanceof Error) {
+            throw valor;
+          }
+          
+          return observable;
+        })
+        .finally(
+          () => {
+            this._alerta.setSubTitle(mensagem);
+            this._alerta.present();
+          }
+        )
+        .subscribe(
+          () => mensagem = 'Agendamento reenviado!',
+          (err: Error) => mensagem = err.message
+        );
   }
-
 }
